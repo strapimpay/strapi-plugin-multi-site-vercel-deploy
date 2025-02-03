@@ -22,7 +22,7 @@ module.exports = ({ strapi }) => ({
   async runDeploy(siteName) {
     try {
       const vercelConfig = buildConfig(strapi);
-      const config = vercelConfig.find((site) => site.appFilter === siteName);
+      const config = vercelConfig.find((site) => site.displayName === siteName);
       if (!config || !config.deployHook) {
         throw "missing configuration: deployHook";
       }
@@ -56,7 +56,7 @@ module.exports = ({ strapi }) => ({
   async getDeployments(siteName) {
     try {
       const vercelConfig = buildConfig(strapi);
-      const config = vercelConfig.find((site) => site.appFilter === siteName);
+      const config = vercelConfig.find((site) => site.displayName === siteName);
       if (!config || !config.apiToken) {
         throw "missing configuration: deployHook";
       }
@@ -100,7 +100,7 @@ module.exports = ({ strapi }) => ({
   deployAvailability(siteName) {
     try {
       const vercelConfig = buildConfig(strapi);
-      const config = vercelConfig.find((site) => site.appFilter === siteName);
+      const config = vercelConfig.find((site) => site.displayName === siteName);
       const runDeployAvailability = getFeatureAvailability(
         config,
         "deployHook"

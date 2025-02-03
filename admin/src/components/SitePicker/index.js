@@ -3,16 +3,16 @@ import { Select, Option } from "@strapi/design-system/Select";
 
 const SitePicker = ({ sites, selectedSite, setSelectedSite }) => {
   const handleChange = (value) => {
-    if (value === selectedSite.appFilter) return;
+    if (value === selectedSite.displayName) return;
 
-    const changedSite = sites.find((site) => site.appFilter === value);
+    const changedSite = sites.find((site) => site.displayName === value);
     setSelectedSite(changedSite);
   };
 
   return (
-    <Select size="M" value={selectedSite.appFilter} onChange={handleChange}>
+    <Select size="M" value={selectedSite.displayName} onChange={handleChange}>
       {sites.map((site) => (
-        <Option key={site.appFilter} value={site.appFilter}>
+        <Option key={site.displayName} value={site.displayName}>
           {site.displayName}
         </Option>
       ))}
